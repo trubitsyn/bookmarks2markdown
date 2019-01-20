@@ -7,12 +7,13 @@ import argparse
 import lxml.html
 
 
-def main(*args, **kwargs):
-    in_file = open(kwargs['in'], 'r')
+def main():
+    args = vars(argparser().parse_args())
+    in_file = open(args['in'], 'r')
     markdown = convert(in_file.read())
     in_file.close()
 
-    out_file = open(kwargs['out'], 'w+')
+    out_file = open(args['out'], 'w+')
     out_file.write(markdown)
     out_file.close()
 
@@ -59,4 +60,4 @@ def argparser():
 
 
 if __name__ == '__main__':
-    main(**vars(argparser().parse_args()))
+    main()
