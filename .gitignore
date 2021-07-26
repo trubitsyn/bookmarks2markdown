@@ -1,3 +1,15 @@
+# Content
+*.html
+*.md
+!README.md
+
+# Conda
+env
+environment.yml
+
+# PyCharm
+.idea
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

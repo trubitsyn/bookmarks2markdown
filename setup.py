@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='bookmarks2markdown',
-    version='1.0.2',
+    version='1.1.0',
     author='Nikola Trubitsyn',
     author_email='nikola.trubitsyn@gmail.com',
     url='https://github.com/trubitsyn/bookmarks2markdown',
@@ -17,7 +17,7 @@ setup(
     ],
     packages=['bookmarks2markdown'],
     install_requires=[
-        'lxml'
+        'git+https://github.com/FlyingWolFox/Netscape-Bookmarks-File-Parser.git'
     ],
     entry_points={
         'console_scripts': [
