@@ -17,7 +17,7 @@ setup(
     ],
     packages=['bookmarks2markdown'],
     install_requires=[
-        'git+https://github.com/FlyingWolFox/Netscape-Bookmarks-File-Parser.git'
+        'netscape-bookmarks-file-parser @ git+https://github.com/FlyingWolFox/Netscape-Bookmarks-File-Parser.git@v1.1',
     ],
     entry_points={
         'console_scripts': [
