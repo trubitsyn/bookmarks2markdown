@@ -1,0 +1,25 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "ccc5e28a9359873a50242d1d6e37c147d23b0c55b5e17e4bb0f34bdfd485196d"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.7"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "netscape-bookmarks-file-parser": {
+            "git": "https://github.com/FlyingWolFox/Netscape-Bookmarks-File-Parser.git",
+            "ref": "6a0f58d0a8637ac21703cb07c9a2ee2e2f6d4936"
+        }
+    },
+    "develop": {}
+}
