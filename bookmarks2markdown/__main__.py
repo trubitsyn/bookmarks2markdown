@@ -4,40 +4,43 @@
 
 import argparse
 
-import lxml.html
+from NetscapeBookmarksFileParser import *
+from NetscapeBookmarksFileParser import parser
 
 
 def main():
     args = vars(argparser().parse_args())
-    in_file = open(args['in'], 'r')
-    markdown = convert(in_file.read())
-    in_file.close()
 
-    out_file = open(args['out'], 'w+')
-    out_file.write(markdown)
-    out_file.close()
+    with open(args['in'], 'r') as in_file:
+        markdown = convert(in_file.read())
+
+    with open(args['out'], 'w+') as out_file:
+        out_file.write(markdown)
 
 
 def convert(doc: str):
     output = []
-    html = lxml.html.fromstring(doc)
 
-    for element in html.iter():
-        res = fsm(element)
-        if res:
-            output.append(res)
+    bookmarks = NetscapeBookmarksFile(doc).parse()
+
+    output.append('# {}'.format(bookmarks.title))
+
+    output += fsm(bookmarks.bookmarks)
 
     return '\n'.join(output)
 
 
-def fsm(element: lxml.html.etree.Element):
-    if element.tag == 'h1':
-        return f'# {element.text}'
-    if element.tag == 'h3':
-        return f'## {element.text}'
-    if element.tag == 'a':
-        return f'* [{element.text}]({element.attrib["href"]})'
+def fsm(folder: BookmarkItem, level=2):
+    output = []
 
+    for i in folder.items:
+        if isinstance(i, BookmarkFolder):
+            output.append('{} {}'.format('#' * level, i.name))
+            output += fsm(i, level + 1)
+        else:  # i.e. BookmarkShortcut
+            output.append('- [{}]({})'.format(i.name, i.href))
+
+    return output
 
 def argparser():
     parser = argparse.ArgumentParser(
